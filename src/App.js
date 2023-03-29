@@ -15,9 +15,9 @@ const [ types, setTypes ] = useState([])
 
 const [ src, setSrc ] = useState("")
 
-function toggleFavorite() {
-  console.log("Toggled")
-}
+let pokeBall = {}
+
+let favorites = []
 
 function sortType(type) {
   fetch(`https://pokeapi.co/api/v2/type/${type}/`)
@@ -74,8 +74,20 @@ async function selectPokemon(select) {
 
    }
 
+function toggleFavorite(pokemon, num) {
+  pokeBall = {name: pokemon, url: `https://pokeapi.co/api/v2/pokemon/${num}/`};
+  console.log(pokeBall);
+  if (favorites.find(favoritePokemon => favoritePokemon.name === pokemon)){
+        favorites.splice((favorites.indexOf(pokemon)-1), 1);
+        console.log(favorites);
+      } else {
+        favorites.push(pokeBall);
+        console.log(favorites); 
+      }
+  }
+
 function sortFavorites() {
-  console.log("Favorites go here")
+  setPoke(favorites);
 }
 
 const pokeTypes = types.map((type) => {
@@ -101,7 +113,7 @@ return (
     <h1>{message}</h1>
     <div>
       <PokeData />
-      <button onClick={toggleFavorite}>Toggle Favorite</button>
+      <button onClick={toggleFavorite(selectPoke.name, )}>Toggle Favorite</button>
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
     <ul id="pokemon">{pokeList}</ul>
