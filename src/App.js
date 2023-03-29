@@ -52,6 +52,8 @@ async function getPokemon() {
 
     console.log(poke)
 
+  setTypeSort([]);
+
 }
 
 async function selectPokemon(select) {
