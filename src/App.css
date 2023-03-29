@@ -37,6 +37,10 @@
   }
 }
 
+ul li {
+  list-style: none;
+}
+
 .normal {
   color: white;
   background-color: #a8a878;
