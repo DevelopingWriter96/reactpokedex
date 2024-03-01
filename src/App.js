@@ -17,6 +17,8 @@ const [ src, setSrc ] = useState("")
 
 const [ favorites, setFavorites ] = useState([])
 
+const [ team, setTeam ] = useState([])
+
 function sortType(type) {
   fetch(`https://pokeapi.co/api/v2/type/${type}/`)
     .then(res => res.json())
@@ -72,6 +74,22 @@ async function selectPokemon(select) {
 
    }
 
+function addTeam(poke, num) {
+
+  if (team.length < 6) {
+
+    if (team.find(teamPokemon => teamPokemon.name === poke)){
+      setTeam(team.filter(teamPokemon => teamPokemon.name !== poke))
+      console.log(team);
+      } else {
+      setTeam([...team, {name: poke, url: `https://pokeapi.co/api/v2/pokemon/${num}/`}]);
+      console.log(team); 
+      }
+    }else{
+      console.log("Your team is full!");
+    } 
+  }
+
 function toggleFavorite(pokemon, num) {
   
   if (favorites.find(favoritePokemon => favoritePokemon.name === pokemon)){
@@ -82,6 +100,10 @@ function toggleFavorite(pokemon, num) {
         console.log(favorites); 
       }
   }
+
+function showTeam() {
+  setPoke(team);
+}
 
 function sortFavorites() {
   setPoke(favorites);
@@ -110,7 +132,9 @@ return (
     <h1>{message}</h1>
     <div>
       <PokeData />
+      <button onClick={() => {addTeam(selectPoke.name, )}}>Toggle Team Membership</button>
       <button onClick={() => {toggleFavorite(selectPoke.name, )}}>Toggle Favorite</button>
+      <button onClick={showTeam}>Team</button>
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
     <ul id="pokemon">{pokeList}</ul>
