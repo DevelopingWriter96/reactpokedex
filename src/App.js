@@ -137,7 +137,6 @@ return (
       <button onClick={showTeam}>Team</button>
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
-      <button>Get Types</button>
     <ul id="pokemon">{pokeList}</ul>
     <ul>{typeSortList}</ul>
     </div>
