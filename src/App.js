@@ -50,7 +50,7 @@ async function getPokemon() {
 
     setPoke(data.results)
 
-    console.log(poke)
+    console.log(data.results)
 
   setTypeSort([]);
 
@@ -74,7 +74,7 @@ async function selectPokemon(select) {
 
    }
 
-function addTeam(poke, num) {
+function addTeam(poke, pokeUrl) {
 
   if (team.length < 6) {
 
@@ -82,7 +82,7 @@ function addTeam(poke, num) {
       setTeam(team.filter(teamPokemon => teamPokemon.name !== poke))
       console.log(team);
       } else {
-      setTeam([...team, {name: poke, url: `https://pokeapi.co/api/v2/pokemon/${num}/`}]);
+      setTeam([...team, {name: poke, url: pokeUrl}]);
       console.log(team); 
       }
     }else{
@@ -90,13 +90,13 @@ function addTeam(poke, num) {
     } 
   }
 
-function toggleFavorite(pokemon, num) {
+function toggleFavorite(pokemon, pokeUrl) {
   
   if (favorites.find(favoritePokemon => favoritePokemon.name === pokemon)){
         setFavorites(favorites.filter(favoritePokemon => favoritePokemon.name !== pokemon))
         console.log(favorites);
       } else {
-        setFavorites([...favorites, {name: pokemon, url: `https://pokeapi.co/api/v2/pokemon/${num}/`}]);
+        setFavorites([...favorites, {name: pokemon, url: pokeUrl}]);
         console.log(favorites); 
       }
   }
@@ -132,8 +132,8 @@ return (
     <h1>{message}</h1>
     <div>
       <PokeData />
-      <button onClick={() => {addTeam(selectPoke.name, )}}>Toggle Team Membership</button>
-      <button onClick={() => {toggleFavorite(selectPoke.name, )}}>Toggle Favorite</button>
+      <button onClick={() => {addTeam(selectPoke.name, selectPoke.url)}}>Toggle Team Membership</button>
+      <button onClick={() => {toggleFavorite(selectPoke.name, selectPoke.url)}}>Toggle Favorite</button>
       <button onClick={showTeam}>Team</button>
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
