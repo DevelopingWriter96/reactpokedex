@@ -17,7 +17,7 @@ const [ src, setSrc ] = useState("")
 
 const [ favorites, setFavorites ] = useState([])
 
-const [ team, setTeam ] = useState([])
+// const [ team, setTeam ] = useState([])
 
 function sortType(type) {
   fetch(`https://pokeapi.co/api/v2/type/${type}/`)
@@ -74,21 +74,21 @@ async function selectPokemon(select) {
 
    }
 
-function addTeam(poke, pokeUrl) {
+// function addTeam(poke, pokeUrl) {
 
-  if (team.length < 6) {
+//   if (team.length < 6) {
 
-    if (team.find(teamPokemon => teamPokemon.name === poke)){
-      setTeam(team.filter(teamPokemon => teamPokemon.name !== poke))
-      console.log(team);
-      } else {
-      setTeam([...team, {name: poke, url: pokeUrl}]);
-      console.log(team); 
-      }
-    }else{
-      console.log("Your team is full!");
-    } 
-  }
+//     if (team.find(teamPokemon => teamPokemon.name === poke)){
+//       setTeam(team.filter(teamPokemon => teamPokemon.name !== poke))
+//       console.log(team);
+//       } else {
+//       setTeam([...team, {name: poke, url: pokeUrl}]);
+//       console.log(team); 
+//       }
+//     }else{
+//       console.log("Your team is full!");
+//     } 
+//   }
 
 function toggleFavorite(pokemon, pokeUrl) {
   
@@ -101,9 +101,9 @@ function toggleFavorite(pokemon, pokeUrl) {
       }
   }
 
-function showTeam() {
-  setPoke(team);
-}
+// function showTeam() {
+//   setPoke(team);
+// }
 
 function sortFavorites() {
   setPoke(favorites);
@@ -132,9 +132,9 @@ return (
     <h1>{message}</h1>
     <div>
       <PokeData />
-      <button onClick={() => {addTeam(selectPoke.name, selectPoke.url)}}>Toggle Team Membership</button>
+      {/* <button onClick={() => {addTeam(selectPoke.name, selectPoke.url)}}>Toggle Team Membership</button> */}
       <button onClick={() => {toggleFavorite(selectPoke.name, selectPoke.url)}}>Toggle Favorite</button>
-      <button onClick={showTeam}>Team</button>
+      {/* <button onClick={showTeam}>Team</button> */}
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
     <ul id="pokemon">{pokeList}</ul>
