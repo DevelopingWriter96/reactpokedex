@@ -90,13 +90,13 @@ async function selectPokemon(select) {
 //     } 
 //   }
 
-function toggleFavorite(pokemon, pokeUrl) {
+function toggleFavorite(pokemon) {
   
-  if (favorites.find(favoritePokemon => favoritePokemon.name === pokemon)){
-        setFavorites(favorites.filter(favoritePokemon => favoritePokemon.name !== pokemon))
+  if (favorites.find(favoritePokemon => favoritePokemon === pokemon)){
+        setFavorites(favorites.filter(favoritePokemon => favoritePokemon !== pokemon))
         console.log(favorites);
       } else {
-        setFavorites([...favorites, {name: pokemon, url: pokeUrl}]);
+        setFavorites([...favorites, {pokemon}]);
         console.log(favorites); 
       }
   }
@@ -106,7 +106,7 @@ function toggleFavorite(pokemon, pokeUrl) {
 // }
 
 function sortFavorites() {
-  setPoke(favorites);
+  console.log(favorites)
 }
 
 const pokeTypes = types.map((type) => {
@@ -133,7 +133,7 @@ return (
     <div>
       <PokeData />
       {/* <button onClick={() => {addTeam(selectPoke.name, selectPoke.url)}}>Toggle Team Membership</button> */}
-      <button onClick={() => {toggleFavorite(selectPoke.name, selectPoke.url)}}>Toggle Favorite</button>
+      <button onClick={() => {toggleFavorite(selectPoke)}}>Toggle Favorite</button>
       {/* <button onClick={showTeam}>Team</button> */}
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
