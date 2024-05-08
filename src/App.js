@@ -103,10 +103,14 @@ function toggleFavorite(pokemon) {
 
 function showTeam() {
   setPoke(team);
+
+  setTypeSort([]);
 }
 
 function sortFavorites() {
   setPoke(favorites);
+
+  setTypeSort([]);
 }
 
 const pokeTypes = types.map((type) => {
