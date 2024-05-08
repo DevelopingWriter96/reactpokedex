@@ -91,13 +91,13 @@ async function selectPokemon(select) {
 //   }
 
 function toggleFavorite(pokemon) {
-  
-  if (favorites.find(favoritePokemon => favoritePokemon === pokemon)){
-        setFavorites(favorites.filter(favoritePokemon => favoritePokemon !== pokemon))
+  console.log(selectPoke);
+  if (favorites.find(favoritePokemon => favoritePokemon === pokemon.name)){
+        setFavorites(favorites.filter(favoritePokemon => favoritePokemon.name !== pokemon.name))
         console.log(favorites);
       } else {
-        setFavorites([...favorites, {pokemon}]);
-        console.log(favorites); 
+        setFavorites([...favorites, {name:pokemon.species.name, url:pokemon.species.url}]);
+        console.log(favorites);
       }
   }
 
@@ -106,7 +106,7 @@ function toggleFavorite(pokemon) {
 // }
 
 function sortFavorites() {
-  console.log(favorites)
+  setPoke(favorites);
 }
 
 const pokeTypes = types.map((type) => {
