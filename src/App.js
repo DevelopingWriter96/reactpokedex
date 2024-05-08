@@ -78,7 +78,7 @@ function addTeam(pokemon) {
 
   if (team.length < 6) {
 
-    if (team.find(teamPokemon => teamPokemon.name === pokemon)){
+    if (team.find(teamPokemon => teamPokemon.name === pokemon.name)){
       setTeam(team.filter(teamPokemon => teamPokemon.name !== pokemon.name))
       console.log(team);
       } else {
@@ -92,7 +92,7 @@ function addTeam(pokemon) {
 
 function toggleFavorite(pokemon) {
   console.log(selectPoke);
-  if (favorites.find(favoritePokemon => favoritePokemon === pokemon.name)){
+  if (favorites.find(favoritePokemon => favoritePokemon.name === pokemon.name)){
         setFavorites(favorites.filter(favoritePokemon => favoritePokemon.name !== pokemon.name))
         console.log(favorites);
       } else {
