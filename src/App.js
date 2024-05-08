@@ -96,7 +96,7 @@ function toggleFavorite(pokemon) {
         setFavorites(favorites.filter(favoritePokemon => favoritePokemon.name !== pokemon.name))
         console.log(favorites);
       } else {
-        setFavorites([...favorites, {name:pokemon.species.name, url:pokemon.species.url}]);
+        setFavorites([...favorites, {name: pokemon.species.name, url: pokemon.species.url}]);
         console.log(favorites);
       }
   }
