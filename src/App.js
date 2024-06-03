@@ -78,8 +78,8 @@ function addTeam(pokemon) {
 
   if (team.length < 6) {
 
-    if (team.find(teamPokemon => teamPokemon.name === pokemon.name)){
-      setTeam(team.filter(teamPokemon => teamPokemon.name !== pokemon.name))
+    if (team.find(teamPokemon => teamPokemon === pokemon.name)){
+      setTeam(team.filter(teamPokemon => teamPokemon !== pokemon.name))
       console.log(team);
       } else {
       setTeam([...team, {name: pokemon.species.name, url: `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`}]);
@@ -131,6 +131,7 @@ const typeSortList = typeSort.map((type) => {
 })
 
 
+
 return (
     <>
     <h1>{message}</h1>
@@ -142,6 +143,7 @@ return (
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
     <ul id="pokemon">{pokeList}</ul>
+    <ul></ul>
     <ul>{typeSortList}</ul>
     </div>
     </>
