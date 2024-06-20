@@ -19,6 +19,16 @@ const [ favorites, setFavorites ] = useState([])
 
 const [ team, setTeam ] = useState([])
 
+const typeWeaknesses= [
+  ["","Normal Defense", "Fire Defense", "Water Defense", "Electric Defense", "Grass Defense", "Ice Defense", "Fighting Defense", "Poison Defense", "Ground Defense", "Flying Defense", "Psychic Defense", "Bug Defense", "Rock Defense", "Ghost Defense", "Dragon Defense", "Dark Defense", "Steel Defense", "Fairy Defense"],
+  ["Normal Attack", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, -1, 0],
+  ["Fire Attack", 0, -1, -1, 0, 1, 1, 0, 0, 0, 0, 0, 1, -1, 0, -1, 0, 1, 0],
+  ["Water Attack", 0, 1, -1, 0, -1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0, 0, 0],
+  ["Electric Attack", 0, 0, 1, -1, -1, 0, 0, 0, -1, 1, 0, 0, 0, 0, 1, 0, -1, 0]
+]
+
+console.log(typeWeaknesses);
+
 function sortType(type) {
   fetch(`https://pokeapi.co/api/v2/type/${type}/`)
     .then(res => res.json())
@@ -82,8 +92,9 @@ function addTeam(pokemon) {
       setTeam(team.filter(teamPokemon => teamPokemon !== pokemon.name))
       console.log(team);
       } else {
-      setTeam([...team, {name: pokemon.species.name, url: `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`}]);
-      console.log(team); 
+      setTeam([...team, {name: pokemon.species.name, url: `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`, types: [...types]}]);
+      console.log(team);
+        
       }
     }else{
       console.log("Your team is full!");
@@ -143,7 +154,7 @@ return (
       <button onClick={sortFavorites}>Sort Favorites</button>
       <button onClick={getPokemon}>Get Pokemon</button>
     <ul id="pokemon">{pokeList}</ul>
-    <ul></ul>
+    <ul id="teamweakness"></ul>
     <ul>{typeSortList}</ul>
     </div>
     </>
